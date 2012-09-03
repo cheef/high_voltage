@@ -5,11 +5,7 @@ class HighVoltage::PagesController < ApplicationController
   layout Proc.new { |_| HighVoltage.layout }
 
   rescue_from ActionView::MissingTemplate do |exception|
-    if exception.message =~ %r{Missing template #{content_path}}
-      raise ActionController::RoutingError, "No such page: #{params[:id]}"
-    else
-      raise exception
-    end
+    raise ActionController::RoutingError, "No such page: #{params[:id]}"
   end
 
   def show
