@@ -9,10 +9,14 @@ class HighVoltage::PagesController < ApplicationController
   end
 
   def show
-    render :template => current_page
+    render :template => current_template
   end
 
   protected
+
+    def current_template
+      File.join templates_path, clean_path
+    end
 
     def current_page
       "#{content_path}#{clean_path}"
@@ -21,6 +25,10 @@ class HighVoltage::PagesController < ApplicationController
     def clean_path
       path = Pathname.new("/#{clean_id}")
       path.cleanpath.to_s[1..-1]
+    end
+
+    def templates_path
+      HighVoltage.templates_path
     end
 
     def content_path

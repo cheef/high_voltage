@@ -7,6 +7,9 @@ module HighVoltage
   mattr_accessor :content_path
   @@content_path = "pages/"
 
+  mattr_accessor :templates_path
+  @@templates_path = "pages"
+
   def self.setup
     yield self
   end
